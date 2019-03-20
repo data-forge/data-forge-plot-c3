@@ -1,0 +1,51 @@
+{
+    "name": "@data-forge-plot/c3",
+    "version": "0.0.1",
+    "description": "Plugin to Data-Forge Plot that integrates support for the C3 charting library.",
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "scripts": {
+        "c": "rm -rf build/*",
+        "clean": "rm -rf build/*",
+        "b": "tsc",
+        "build": "tsc",
+        "cb": "rm -rf build/* && tsc",
+        "clean-build": "rm -rf build/* && tsc",
+        "bw": "tsc --watch",
+        "build:watch": "tsc --watch",
+        "cbw": "rm -rf build/* && tsc --watch",
+        "clean-build:watch": "rm -rf build/* && tsc --watch",
+        "prepublishOnly": "npm test && npm run build",
+        "l": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+        "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+        "pretest": "npm run lint",
+        "t": "jest",
+        "test": "jest",
+        "tw": "jest --watch",
+        "test:watch": "jest --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://ashleydavis@github.com/data-forge/data-forge-plot-c3.git"
+    },
+    "keywords": [],
+    "author": "ashley@codecapers.com.au",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/data-forge/data-forge-plot-c3/issues"
+    },
+    "homepage": "https://github.com/data-forge/data-forge-plot-c3#readme",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/jest": "^24.0.6",
+        "@types/node": "10.11.4",
+        "@types/sugar": "^2.0.2",
+        "jest": "^24.1.0",
+        "source-map-support": "0.5.9",
+        "sugar": "^2.0.6",
+        "ts-jest": "^23.10.5",
+        "ts-node": "7.0.1",
+        "tslint": "^5.12.1",
+        "typescript": "^3.1.1"
+    }
+}
