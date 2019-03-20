@@ -1,7 +1,6 @@
-import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IExpandedAxisConfig, IExpandedYAxisConfig } from "../chart-def";
-
-declare var moment: any;
-declare var numeral: any;
+import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IExpandedAxisConfig, IExpandedYAxisConfig } from "../external_to_be_moved/chart-def";
+import * as moment from "moment";
+import * as numeral from "numeral";
 
 /**
  * Configure a single axe.
@@ -310,7 +309,6 @@ export function formatChartDef(inputChartDef: IChartDef): any {
     extractColumns("y2", workingChartDef, columns, columnsSet);
 
     const c3ChartDef = {
-        bindto: "#chart",
         size: {
             width: workingChartDef.plotConfig && workingChartDef.plotConfig.width || 1200,
             height: workingChartDef.plotConfig && workingChartDef.plotConfig.height || 600,

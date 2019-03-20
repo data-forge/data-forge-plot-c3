@@ -1,7 +1,7 @@
 import "jest";
-import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig } from "../../chart-def";
+import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig } from "../../external_to_be_moved/chart-def";
 import { formatChartDef } from "../../lib/format-chart-def";
-import { ISerializedDataFrame } from "../../data";
+import { ISerializedDataFrame } from "../../external_to_be_moved/data";
 import * as Sugar from "sugar";
 
 export interface ITestChartDef {
