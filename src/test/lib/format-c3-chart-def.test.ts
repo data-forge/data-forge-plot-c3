@@ -125,7 +125,6 @@ describe("format c3 chart", () => {
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
@@ -215,7 +214,6 @@ describe("format c3 chart", () => {
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
@@ -298,7 +296,6 @@ describe("format c3 chart", () => {
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
@@ -402,7 +399,6 @@ describe("format c3 chart", () => {
         const c3ChartDef = formatChartDef(chartDef);
 
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
@@ -533,7 +529,6 @@ describe("format c3 chart", () => {
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
@@ -665,7 +660,6 @@ describe("format c3 chart", () => {
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef).toEqual({
-            bindto: "#chart",
             size: {
                 width: 800,
                 height: 600,
