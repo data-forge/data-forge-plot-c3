@@ -32,7 +32,8 @@
                },
                "esSpecCompliant": true
             }
-        ]
+        ],
+        "forin": false
     },
     "rulesDirectory": []
 }

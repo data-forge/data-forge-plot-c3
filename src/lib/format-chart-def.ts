@@ -273,11 +273,11 @@ export function formatChartDef(inputChartDef: IChartDef): any {
         workingChartDef.data.columnOrder = inputChartDef.data.columnOrder.slice(); // Clone array.
         workingChartDef.data.columnOrder.push("__index__");
         workingChartDef.data.columns = Object.assign({}, inputChartDef.data.columns);
-        workingChartDef.data.columns["__index__"] = inputChartDef.data.index.type;
+        workingChartDef.data.columns.__index__ = inputChartDef.data.index.type;
         workingChartDef.data.values = inputChartDef.data.values.slice(); // Clone array.
         for (let i = 0; i < workingChartDef.data.values.length; ++i) {
             const row = workingChartDef.data.values[i];
-            row["__index__"] = inputChartDef.data.index.values[i];
+            row.__index__ = inputChartDef.data.index.values[i];
         }
     }
 
@@ -322,10 +322,10 @@ export function formatChartDef(inputChartDef: IChartDef): any {
         },
         axis: configureAxis(workingChartDef),
         transition: {
-            duration: 0 // Disable animated transitions when we are capturing a static image.
+            duration: 0, // Disable animated transitions when we are capturing a static image.
         },
         point: {
-            show: false
+            show: false,
         },
         legend: {
             show: workingChartDef.plotConfig.legend.show,

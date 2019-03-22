@@ -108,7 +108,7 @@ describe("format c3 chart", () => {
                 },
                 index: {
                     type: "number",
-                    values: [5, 6]
+                    values: [5, 6],
                 },
                 values: [
                     {

@@ -103,7 +103,6 @@ export interface ILegendConfig {
     show?: boolean;
 }
 
-
 /**
  * Defines the chart.
  */
