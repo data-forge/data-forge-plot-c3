@@ -1,17 +1,18 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/template.ts',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js'
+        filename: "template/assets/index.js"
     },
 
-    mode: 'development', // TODO: 'production',
+    mode: 'development', // TODO: 'production', Want to minify the output.
     devtool: 'source-map',
 
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js' ]
+        extensions: [ '.tsx', '.ts', '.js' ],
     },
 
     module: {
@@ -19,8 +20,17 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/
-            }
-        ]
+                exclude: /node_modules/,
+            },
+        ],
     },
+
+    plugins: [ //todo: copy the c3 css to build
+        new CopyWebpackPlugin([
+            { 
+                from: 'src/template', //TODO: Just don't want to copy the ts file!
+                to: 'template',
+            },
+        ]),
+    ],
 };

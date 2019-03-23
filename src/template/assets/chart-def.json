@@ -1,0 +1,61 @@
+{
+    "data": {
+        "columnOrder": [
+            "A",
+            "__index__"
+        ],
+        "columns": {
+            "A": "number",
+            "__index__": "number"
+        },
+        "index": {
+            "type": "number",
+            "values": [ 1, 2, 3 ]
+        },
+        "values": [
+            {
+                "A": 10,
+                "__index__": 1
+            },
+            {
+                "A": 20,
+                "__index__": 2
+            },
+            {
+                "A": 30,
+                "__index__": 3
+            }
+        ]
+    },
+    "plotConfig": {
+        "chartType": "line",
+        "width": 800,
+        "height": 600,
+        "x": {
+            "axisType": "default",
+            "label": {}
+        },
+        "y": {
+            "axisType": "default",
+            "label": {}
+        },
+        "y2": {
+            "axisType": "default",
+            "label": {}
+        },
+        "legend": {
+            "show": true
+        }
+    },
+    "axisMap": {
+        "x": {
+            "series": "__index__"
+        },
+        "y": [
+            {
+                "series": "A"
+            }
+        ],
+        "y2": []
+    }
+}
