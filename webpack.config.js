@@ -31,6 +31,10 @@ module.exports = {
                 from: 'src/template', //TODO: Just don't want to copy the ts file!
                 to: 'template',
             },
+            {
+                from: "./node_modules/c3/c3.min.css",
+                to: "template/assets",
+            },
         ]),
     ],
 };
