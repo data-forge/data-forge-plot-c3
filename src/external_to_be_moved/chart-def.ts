@@ -1,6 +1,6 @@
 //TODO: This needs to be in a shared library!
 
-import { ISerializedDataFrame } from "./data";
+import { ISerializedDataFrame } from "@data-forge/serialization";
 
 /**
  * Defines the type of chart to output.

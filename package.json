@@ -1,28 +1,28 @@
 {
     "name": "@data-forge-plot/c3",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Plugin to Data-Forge Plot that integrates support for the C3 charting library.",
     "main": "build/index.js",
     "types": "build/index.d.ts",
     "scripts": {
-        "c": "rm -rf build/*",
+        "c": "npm run clean",
         "clean": "rm -rf build/*",
-        "b": "webpack",
+        "b": "npm run build",
         "build": "webpack",
-        "cb": "rm -rf build/* && npm run build",
-        "clean-build": "rm -rf build/* && npm run build",
+        "cb": "npm run clean-build",
+        "clean-build": "npm run clean && npm run build",
         "prepublishOnly": "npm test && npm run build",
-        "l": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+        "l": "npm run lint",
         "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
         "pretest": "npm run lint",
-        "t": "jest",
+        "t": "npm run test",
         "test": "jest",
-        "tw": "jest --watch",
+        "tw": "npm run test:watch",
         "test:watch": "jest --watch"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://ashleydavis@github.com/data-forge/data-forge-plot-c3.git"
+        "url": "git+https://github.com/data-forge/data-forge-plot-c3.git"
     },
     "keywords": [],
     "author": "ashley@codecapers.com.au",
@@ -32,6 +32,7 @@
     },
     "homepage": "https://github.com/data-forge/data-forge-plot-c3#readme",
     "dependencies": {
+        "@data-forge/serialization": "^1.0.0",
         "c3": "^0.6.13",
         "moment": "^2.24.0",
         "numeral": "^2.0.6"
