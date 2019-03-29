@@ -1,10 +1,10 @@
-import { renderChart } from "./index";
+import { mountChart } from "./index";
 
 async function main(): Promise<void> {
 
     const response = await fetch("chart-def.json");
     const chartDef = await response.json();
-    renderChart(chartDef, document.getElementById("chart")!);
+    mountChart(chartDef, document.getElementById("chart")!);
 }
 
 main()

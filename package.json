@@ -1,6 +1,6 @@
 {
     "name": "@data-forge-plot/c3",
-    "version": "0.0.8",
+    "version": "0.0.10",
     "description": "Plugin to Data-Forge Plot that integrates support for the C3 charting library.",
     "main": "build/index.js",
     "types": "build/index.d.ts",
