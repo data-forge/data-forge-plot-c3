@@ -1,5 +1,5 @@
 import "jest";
-import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig } from "../../external_to_be_moved/chart-def";
+import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig } from "@data-forge-plot/chart-def";
 import { formatChartDef } from "../../lib/format-chart-def";
 import { ISerializedDataFrame } from "@data-forge/serialization";
 import * as Sugar from "sugar";
@@ -62,7 +62,6 @@ describe("format c3 chart", () => {
         const chartDef: IChartDef = {
             data: testChartDef.data,
             plotConfig: {
-                template: "c3",
                 chartType: ChartType.Line,
                 width: 800,
                 height: 600,

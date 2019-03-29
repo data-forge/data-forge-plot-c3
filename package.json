@@ -1,6 +1,6 @@
 {
     "name": "@data-forge-plot/c3",
-    "version": "0.0.4",
+    "version": "0.0.7",
     "description": "Plugin to Data-Forge Plot that integrates support for the C3 charting library.",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -11,7 +11,7 @@
         "build": "webpack",
         "cb": "npm run clean-build",
         "clean-build": "npm run clean && npm run build",
-        "prepublishOnly": "npm test && npm run build",
+        "prepublishOnly": "npm test && npm run clean-build",
         "l": "npm run lint",
         "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
         "pretest": "npm run lint",
@@ -32,6 +32,7 @@
     },
     "homepage": "https://github.com/data-forge/data-forge-plot-c3#readme",
     "dependencies": {
+        "@data-forge-plot/chart-def": "^1.0.1",
         "@data-forge/serialization": "^1.0.0",
         "c3": "^0.6.13",
         "moment": "^2.24.0",

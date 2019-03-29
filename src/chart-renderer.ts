@@ -1,4 +1,4 @@
-import { IChartDef } from "./external_to_be_moved/chart-def";
+import { IChartDef } from "@data-forge-plot/chart-def";
 import { formatChartDef } from "./lib/format-chart-def";
 import * as c3 from "c3";
 

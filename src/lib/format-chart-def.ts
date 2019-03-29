@@ -1,4 +1,4 @@
-import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IExpandedAxisConfig, IExpandedYAxisConfig } from "../external_to_be_moved/chart-def";
+import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IExpandedAxisConfig, IExpandedYAxisConfig } from "@data-forge-plot/chart-def";
 import * as moment from "moment";
 import * as numeral from "numeral";
 
