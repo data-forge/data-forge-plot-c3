@@ -1,5 +1,6 @@
 import { IChartDef } from "@data-forge-plot/chart-def";
 import { formatChartDef } from "./lib/format-chart-def";
+export { formatChartDef } from "./lib/format-chart-def";
 import * as c3 from "c3";
 
 //

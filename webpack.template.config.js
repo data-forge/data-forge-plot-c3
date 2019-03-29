@@ -8,7 +8,7 @@ module.exports = {
         filename: "template/assets/index.js",
     },
 
-    mode: "development", // TODO: "production", Want to minify the output.
+    mode: "production",
     devtool: "source-map",
 
     resolve: {

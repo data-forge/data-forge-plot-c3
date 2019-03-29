@@ -1,4 +1,4 @@
-import { renderChart } from "./chart-renderer";
+import { renderChart } from "./index";
 
 async function main(): Promise<void> {
 
