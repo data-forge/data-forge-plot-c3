@@ -8,7 +8,7 @@ module.exports = {
         filename: "template/assets/index.js",
     },
 
-    mode: "production",
+    mode: "development", //TODO: Possibly need separate prod and dev templates.
     devtool: "source-map",
 
     resolve: {
