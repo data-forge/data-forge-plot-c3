@@ -1,14 +1,14 @@
 import "jest";
-import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig } from "@data-forge-plot/chart-def";
+import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig, ISingleAxisMap } from "@data-forge-plot/chart-def";
 import { formatChartDef } from "../../lib/format-chart-def";
 import { ISerializedDataFrame } from "@data-forge/serialization";
 import * as Sugar from "sugar";
 
 export interface ITestChartDef {
     data: ISerializedDataFrame;
-    x: string;
-    y: string | string[] | ISingleYAxisMap | ISingleYAxisMap[];
-    y2?: string | string[] | ISingleYAxisMap | ISingleYAxisMap[];
+    x: ISingleAxisMap;
+    y: ISingleYAxisMap[];
+    y2?: ISingleYAxisMap[];
     legend?: ILegendConfig;
 }
 
@@ -17,46 +17,6 @@ describe("format c3 chart", () => {
     it("throws when configuration is invalid", () => {
         expect (() => formatChartDef({} as IChartDef)).toThrow();
     });
-
-    function formatSeries(series?: string | string[] | ISingleYAxisMap | ISingleYAxisMap[]): ISingleYAxisMap[] {
-        if (!series) {
-            return [];
-        }
-
-        if (Sugar.Object.isString(series)) {
-            return [
-                {
-                    series,
-                },
-            ];
-        }
-
-        if (Sugar.Object.isObject(series)) {
-            return [
-                series as ISingleYAxisMap,
-            ];
-        }
-
-        if (Sugar.Object.isArray(series)) {
-            return (series as ISingleYAxisMap[]).map(seriesConfig => {
-                if (Sugar.Object.isString(seriesConfig)) {
-                    return {
-                        series: seriesConfig,
-                    };
-                }
-                else {
-                    if (seriesConfig.x && Sugar.Object.isString(seriesConfig.x)) {
-                        seriesConfig.x = {
-                            series: seriesConfig.x,
-                        };
-                    }
-                    return seriesConfig;
-                }
-            });
-        }
-
-        throw new Error("Invalid series config.");
-    }
 
     function createMinimalChartDef(testChartDef: ITestChartDef) {
         const chartDef: IChartDef = {
@@ -67,17 +27,14 @@ describe("format c3 chart", () => {
                 height: 600,
                 x: {
                     axisType: AxisType.Default,
-                    label: {},
                 },
 
                 y: {
                     axisType: AxisType.Default,
-                    label: {},
                 },
 
                 y2: {
                     axisType: AxisType.Default,
-                    label: {},
                 },
 
                 legend: {
@@ -89,9 +46,9 @@ describe("format c3 chart", () => {
             },
 
             axisMap: {
-                x: { series: testChartDef.x },
-                y: formatSeries(testChartDef.y),
-                y2: formatSeries(testChartDef.y2),
+                x: testChartDef.x,
+                y: testChartDef.y,
+                y2: testChartDef.y2 || [],
             },
         };
         return chartDef;
@@ -118,8 +75,8 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "__index__",
-            y: "__value__",
+            x: { series: "__index__" },
+            y: [{ series: "__value__" }],
         });
 
         const c3ChartDef = formatChartDef(chartDef);
@@ -154,12 +111,10 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: false,
@@ -207,8 +162,8 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "a",
-            y: "b",
+            x: { series: "a" },
+            y: [{ series: "b" }],
         });
 
         const c3ChartDef = formatChartDef(chartDef);
@@ -235,12 +190,10 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: false,
@@ -288,9 +241,9 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "a",
-            y: "b",
-            y2: "c",
+            x: { series: "a" },
+            y: [{ series: "b" }],
+            y2: [{ series: "c" }],
         });
 
         const c3ChartDef = formatChartDef(chartDef);
@@ -332,18 +285,15 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: true,
                     type: "indexed",
-                    label: {},
-                },
+               },
             },
             transition: {
                 duration: 0,
@@ -390,9 +340,9 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "a",
-            y: [ "b", "c" ],
-            y2: [ "d", "e" ],
+            x: { series: "a" },
+            y: [{ series:  "b" }, { series: "c" } ],
+            y2: [ { series: "d" }, { series: "e" } ],
         });
 
         const c3ChartDef = formatChartDef(chartDef);
@@ -449,17 +399,14 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
             },
             transition: {
@@ -507,21 +454,21 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "__index__",
+            x: { series: "__index__" },
             y: [
                 {
                     series: "b",
-                    x: "a",
+                    x: { series: "a" },
                 },
                 {
                     series: "c",
-                    x: "d",
+                    x: { series: "d" },
                 },
             ],
             y2: [
                 {
                     series: "e",
-                    x: "a",
+                    x: { series: "a" },
                 },
             ],
         });
@@ -577,17 +524,14 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
             },
             transition: {
@@ -635,21 +579,21 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "__index__",
+            x: { series: "__index__" },
             y: [
                 {
                     series: "b",
-                    x: "a",
+                    x: { series: "a" },
                 },
                 {
                     series: "c",
-                    x: "d",
+                    x: { series: "d" },
                 },
             ],
             y2: [
                 {
                     series: "e",
-                    x: "a",
+                    x: { series: "a" },
                 },
             ],
             legend: {
@@ -708,17 +652,14 @@ describe("format c3 chart", () => {
                 x: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
                 y2: {
                     show: true,
                     type: "indexed",
-                    label: {},
                 },
             },
             transition: {
@@ -766,21 +707,21 @@ describe("format c3 chart", () => {
                     },
                 ],
             },
-            x: "__index__",
+            x: { series: "__index__" },
             y: [
                 {
                     series: "b",
-                    x: "a",
+                    x: { series: "a" },
                 },
                 {
                     series: "c",
-                    x: "d",
+                    x: { series: "d" },
                 },
             ],
             y2: [
                 {
                     series: "e",
-                    x: "a",
+                    x: { series: "a" },
                 },
             ],
             legend: {

@@ -1,4 +1,4 @@
-import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IExpandedAxisConfig, IExpandedYAxisConfig } from "@data-forge-plot/chart-def";
+import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IYAxisConfig } from "@data-forge-plot/chart-def";
 import * as moment from "moment";
 import * as numeral from "numeral";
 
@@ -70,7 +70,7 @@ function formatValues(
 function configureOneSeries(
     seriesConfig: ISingleAxisMap,
     inputChartDef: IChartDef,
-    axisConfig: IExpandedAxisConfig,
+    axisConfig: IAxisConfig,
     c3AxisDef: any
 ): void {
     // Default axis type based on data type.
@@ -102,7 +102,7 @@ function configureOneSeries(
 /**
  * Configure a single axis.
  */
-function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IExpandedAxisConfig, c3Axis: any): void {
+function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IAxisConfig, c3Axis: any): void {
     const axisMap = inputChartDef.axisMap as any;
     if (!axisMap) {
         return;
@@ -131,7 +131,7 @@ function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig
 /**
  * Configure a single Y axis.
  */
-function configureOneYAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IExpandedYAxisConfig, c3Axis: any): void {
+function configureOneYAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IYAxisConfig, c3Axis: any): void {
     const axisMap = inputChartDef.axisMap as any;
     if (!axisMap) {
         return;

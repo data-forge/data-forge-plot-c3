@@ -34,7 +34,7 @@
     },
     "homepage": "https://github.com/data-forge/data-forge-plot-c3#readme",
     "dependencies": {
-        "@data-forge-plot/chart-def": "^1.0.1",
+        "@data-forge-plot/chart-def": "^1.0.4",
         "@data-forge/serialization": "^1.0.0",
         "c3": "^0.6.13",
         "moment": "^2.24.0",
