@@ -1,6 +1,6 @@
-import { IChartDef, ISingleYAxisMap, ISingleAxisMap, IAxisConfig, IYAxisConfig } from "@data-forge-plot/chart-def";
 import * as moment from "moment";
 import * as numeral from "numeral";
+import { IChartDef, IYAxisSeriesConfig, IAxisConfig, IAxisSeriesConfig, IYAxisConfig } from "@data-forge-plot/chart-def";
 
 /**
  * Configure a single axe.
@@ -11,7 +11,7 @@ function configureOneAxe(axisName: string, inputChartDef: IChartDef, c3Axes: any
         return;
     }
 
-    const series: ISingleYAxisMap[] = axisMap[axisName];
+    const series: IYAxisSeriesConfig[] = axisMap[axisName];
     if (!series) {
         return;
     }
@@ -68,9 +68,9 @@ function formatValues(
 }
 
 function configureOneSeries(
-    seriesConfig: ISingleAxisMap,
+    seriesConfig: IAxisSeriesConfig,
     inputChartDef: IChartDef,
-    axisConfig: IAxisConfig,
+    axisConfig: IAxisConfig | undefined,
     c3AxisDef: any
 ): void {
     // Default axis type based on data type.
@@ -102,7 +102,7 @@ function configureOneSeries(
 /**
  * Configure a single axis.
  */
-function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IAxisConfig, c3Axis: any): void {
+function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IAxisConfig | undefined, c3Axis: any): void {
     const axisMap = inputChartDef.axisMap as any;
     if (!axisMap) {
         return;
@@ -110,10 +110,8 @@ function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig
 
     c3Axis[axisName] = { show: false };
 
-    //fio:const axisDef: IAxisConfig = (inputChartDef.plotConfig as any)[axisName];
     const c3AxisDef = c3Axis[axisName];
-
-    const series: ISingleAxisMap = axisMap[axisName];
+    const series: IAxisSeriesConfig = axisMap[axisName];
     if (!series) {
         return;
     }
@@ -131,7 +129,7 @@ function configureOneAxis(axisName: string, inputChartDef: IChartDef, axisConfig
 /**
  * Configure a single Y axis.
  */
-function configureOneYAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IYAxisConfig, c3Axis: any): void {
+function configureOneYAxis(axisName: string, inputChartDef: IChartDef, axisConfig: IYAxisConfig | undefined, c3Axis: any): void {
     const axisMap = inputChartDef.axisMap as any;
     if (!axisMap) {
         return;
@@ -140,11 +138,11 @@ function configureOneYAxis(axisName: string, inputChartDef: IChartDef, axisConfi
     configureOneAxis(axisName, inputChartDef, axisConfig, c3Axis);
 
     const c3AxisDef = c3Axis[axisName];
-    if (axisConfig.min !== undefined) {
+    if (axisConfig && axisConfig.min !== undefined) {
         c3AxisDef.min = axisConfig.min;
     }
 
-    if (axisConfig.max !== undefined) {
+    if (axisConfig && axisConfig.max !== undefined) {
         c3AxisDef.max = axisConfig.max;
     }
 }
@@ -170,7 +168,7 @@ function configureSeriesNames(inputChartDef: IChartDef): any {
 
     if (inputChartDef.axisMap) {
         for (const axisName in inputChartDef.axisMap) {
-            const series: ISingleAxisMap = (inputChartDef.axisMap as any)[axisName];
+            const series: IAxisSeriesConfig = (inputChartDef.axisMap as any)[axisName];
             if (Array.isArray(series)) {
                 series.forEach(seriesConfig => {
                     if (seriesConfig.label) {
@@ -198,7 +196,7 @@ function extractXS(axisName: string, inputChartDef: IChartDef, xs: any): void {
         return;
     }
 
-    const series: ISingleYAxisMap[] = axisMap[axisName];
+    const series: IYAxisSeriesConfig[] = axisMap[axisName];
     if (!series) {
         return;
     }
@@ -210,7 +208,7 @@ function extractXS(axisName: string, inputChartDef: IChartDef, xs: any): void {
         }
 
         if (seriesConfig.x) {
-            xs[ySeriesName] = (seriesConfig.x as ISingleAxisMap).series; // X explicitly associated with Y.
+            xs[ySeriesName] = (seriesConfig.x as IAxisSeriesConfig).series; // X explicitly associated with Y.
         }
         else if (inputChartDef.axisMap && inputChartDef.axisMap.x) {
             xs[ySeriesName] = inputChartDef.axisMap.x.series; // Default X.
@@ -238,7 +236,7 @@ function extractColumns(axisName: string, inputChartDef: IChartDef, columns: any
         return;
     }
 
-    const series: ISingleYAxisMap[] = axisMap[axisName];
+    const series: IYAxisSeriesConfig[] = axisMap[axisName];
     if (!series) {
         return;
     }
@@ -246,7 +244,7 @@ function extractColumns(axisName: string, inputChartDef: IChartDef, columns: any
     for (const seriesConfig of series) {
         addColumn(seriesConfig.series, inputChartDef, columns, columnsSet);
 
-        const xSeriesName = seriesConfig.x && (seriesConfig.x as ISingleAxisMap).series
+        const xSeriesName = seriesConfig.x && (seriesConfig.x as IAxisSeriesConfig).series
             || inputChartDef.axisMap && inputChartDef.axisMap.x && inputChartDef.axisMap.x.series || null;
         if (xSeriesName) {
             addColumn(xSeriesName, inputChartDef, columns, columnsSet);
@@ -328,7 +326,7 @@ export function formatChartDef(inputChartDef: IChartDef): any {
             show: false,
         },
         legend: {
-            show: workingChartDef.plotConfig.legend.show,
+            show: workingChartDef.plotConfig.legend && workingChartDef.plotConfig.legend.show,
         },
     };
 

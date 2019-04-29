@@ -3,8 +3,8 @@ import { mountChart } from "./index";
 async function main(): Promise<void> {
 
     const response = await fetch("chart-def.json");
-    const chartDef = await response.json();
-    mountChart(chartDef, document.getElementById("chart")!);
+    const chartData = await response.json();
+    mountChart(chartData.chartDef, document.getElementById("chart")!);
 }
 
 main()

@@ -1,14 +1,14 @@
 import "jest";
-import { IChartDef, AxisType, ChartType, ISingleYAxisMap, ILegendConfig, ISingleAxisMap } from "@data-forge-plot/chart-def";
 import { formatChartDef } from "../../lib/format-chart-def";
 import { ISerializedDataFrame } from "@data-forge/serialization";
 import * as Sugar from "sugar";
+import { IAxisSeriesConfig, IYAxisSeriesConfig, ILegendConfig, IChartDef, ChartType, AxisType } from "@data-forge-plot/chart-def";
 
 export interface ITestChartDef {
     data: ISerializedDataFrame;
-    x: ISingleAxisMap;
-    y: ISingleYAxisMap[];
-    y2?: ISingleYAxisMap[];
+    x: IAxisSeriesConfig;
+    y: IYAxisSeriesConfig[];
+    y2?: IYAxisSeriesConfig[];
     legend?: ILegendConfig;
 }
 
@@ -729,11 +729,11 @@ describe("format c3 chart", () => {
             },
         });
     
-        chartDef.plotConfig.y.min = 10;
-        chartDef.plotConfig.y.max = 100;
+        chartDef.plotConfig.y!.min = 10;
+        chartDef.plotConfig.y!.max = 100;
 
-        chartDef.plotConfig.y2.min = 2;
-        chartDef.plotConfig.y2.max = 3;
+        chartDef.plotConfig.y2!.min = 2;
+        chartDef.plotConfig.y2!.max = 3;
 
         const c3ChartDef = formatChartDef(chartDef);
         expect(c3ChartDef.axis.y.min).toEqual(10);
