@@ -53,11 +53,33 @@ class C3Chart implements IChart {
     }
 }
 
+/**
+ * Options to control how the chart is mounted.
+ */
+export interface IMountOptions {
+    /**
+     * Set to true to make the chart static.
+     * The chart will have interactive features and animations disabled.
+     */
+    makeStatic?: boolean;
+
+    /**
+     * Debug log the chart definition after formatting.
+     */
+    showChartDef?: boolean;
+}
+
 //
 // Mount the chart on the DOM element.
 //
-export function mountChart(chartDef: IChartDef, domElement: HTMLElement): IChart {
+export function mountChart(chartDef: IChartDef, domElement: HTMLElement, chartOptions?: IMountOptions): IChart {
     const c3ChartDef = formatChartDef(chartDef); //TODO: This can be properly typed to a c3 chart configuration!
+
+    if (chartOptions && chartOptions.showChartDef) {
+        console.log("Formatted chart definition:");
+        console.log(JSON.stringify(c3ChartDef, null, 4));
+    }
+
     c3ChartDef.bindto = domElement;
     const chart = c3.generate(c3ChartDef);
     const c3Chart = new C3Chart(chart);
