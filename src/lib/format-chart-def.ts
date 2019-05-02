@@ -308,11 +308,19 @@ export function formatChartDef(inputChartDef: IChartDef): any {
     extractColumns("y", workingChartDef, columns, columnsSet);
     extractColumns("y2", workingChartDef, columns, columnsSet);
 
+    const size: any = {};
+    if (workingChartDef.plotConfig) {
+        if (workingChartDef.plotConfig.height) {
+            size.height = workingChartDef.plotConfig.height;
+        }
+
+        if (workingChartDef.plotConfig.width) {
+            size.width = workingChartDef.plotConfig.width;
+        }
+    }
+
     const c3ChartDef = {
-        size: {
-            width: workingChartDef.plotConfig && workingChartDef.plotConfig.width || 1200,
-            height: workingChartDef.plotConfig && workingChartDef.plotConfig.height || 600,
-        },
+        size,
         data: {
             xs,
             columns,
