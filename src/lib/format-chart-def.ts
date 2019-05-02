@@ -158,6 +158,7 @@ function configureAxis(inputChartDef: IChartDef): any {
     configureOneAxis("x", inputChartDef, inputChartDef.plotConfig.x, c3Axis);
     configureOneYAxis("y", inputChartDef, inputChartDef.plotConfig.y, c3Axis);
     configureOneYAxis("y2", inputChartDef, inputChartDef.plotConfig.y2, c3Axis);
+    c3Axis.x.show = true; // Always show x.
 
     return c3Axis;
 }
