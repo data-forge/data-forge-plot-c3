@@ -79,9 +79,11 @@ function configureOneSeries(
     c3AxisDef.type = determineAxisType(dataType);
 
     if (axisConfig) {
+        /*fio:
         if (axisConfig.axisType && axisConfig.axisType !== "default") {
             c3AxisDef.type = axisConfig.axisType;
         }
+        */
 
         if (axisConfig.label) {
             c3AxisDef.label = axisConfig.label;

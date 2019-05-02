@@ -25,18 +25,9 @@ describe("format c3 chart", () => {
                 chartType: ChartType.Line,
                 width: 800,
                 height: 600,
-                x: {
-                    axisType: AxisType.Default,
-                },
-
-                y: {
-                    axisType: AxisType.Default,
-                },
-
-                y2: {
-                    axisType: AxisType.Default,
-                },
-
+                x: {},
+                y: {},
+                y2: {},
                 legend: {
                     show: testChartDef.legend 
                         && testChartDef.legend.show !== undefined 

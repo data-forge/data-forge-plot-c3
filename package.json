@@ -1,6 +1,6 @@
 {
     "name": "@data-forge-plot/c3",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Plugin to Data-Forge Plot that integrates support for the C3 charting library.",
     "main": "build/index.js",
     "types": "build/index.d.ts",
@@ -34,9 +34,9 @@
     },
     "homepage": "https://github.com/data-forge/data-forge-plot-c3#readme",
     "dependencies": {
-        "@data-forge-plot/chart-def": "^1.0.9",
+        "@data-forge-plot/chart-def": "^1.1.1",
         "@data-forge/serialization": "^1.0.0",
-        "c3": "^0.6.13",
+        "c3": "^0.7.0",
         "moment": "^2.24.0",
         "numeral": "^2.0.6"
     },
