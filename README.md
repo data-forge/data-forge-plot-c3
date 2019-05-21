@@ -1,3 +1,3 @@
-# data-forge-plot-c3
+# data-forge-plot/c3
 
 This is a plugin chart template to be used with [Data-Forge Plot](https://www.npmjs.com/package/data-forge-plot).
